@@ -1,0 +1,32 @@
+.my-pokemons{
+    color: #2E86AB;
+}
+
+.my-pokemon-entry{
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 80%;
+    text-align: center;
+    border-radius: 25px;
+    background-color: white;
+}
+
+.my-poke-btn {
+    padding: 10px 20px;
+    margin: 10px auto;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: #ca3d3d;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.my-poke-btn:hover{
+    background-color: #b43636;
+}
+
+.my-poke-btn:active{
+    background-color: #8b2a2a;
+}
