@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useState } from 'react'
+import CatchMessage from './CatchMessage'
 import './Detail.css'
 import ErrorMessage from './ErrorMessage'
 import Loading from './Loading'
@@ -128,7 +129,7 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
                             console.log("You caught "+name+"! "+chance) 
                             addPokemonToList(name, pokemonSprite)
                         } else {
-                            alert("Ah, you almost caught it!")
+                            alert(CatchMessage[chance%CatchMessage.length])
                             console.log("Ah damn, it was so close! "+chance) 
                         }
                     }}>Catch</button>

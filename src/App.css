@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
   background-color: #f24236;
   min-height: 100vh;
 }
@@ -15,4 +16,20 @@
 .title-card h1{
   margin: 0;
   padding-top: 25px;
+}
+
+.app-wrapper{
+  min-height: calc(100vh-30px);
+  padding-bottom: 30px;
+}
+
+.footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin-top: 20px;
+  padding-top: 10px;
+  background-color: #201e1e;
+  color: white;
+  height: 30px;
 }
