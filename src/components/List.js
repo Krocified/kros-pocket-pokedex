@@ -106,12 +106,18 @@ const List = () => {
     }
 
     const next = () => {
-        if(index===150) return
+        if(index===150) {
+            setIndex(0)
+            return
+        }
         setIndex(index+10)
     }
 
     const prev = () => {
-        if(index===0) return
+        if(index===0) {
+            setIndex(150)
+            return
+        }
         setIndex(index-10)
     }
 
@@ -121,11 +127,11 @@ const List = () => {
         <div className="pokemon-list">
             <div className="pokedex">
                 <h2>
-                    Pokemon List
+                    Pokémon List
                 </h2>
                 <div>
-                    <button onClick={show} className="dex-btn" id="dex-expand-btn">Browse Pokedex</button>
-                    <button onClick={collapse} className="dex-btn collapse" id="dex-collapse-btn" style={{display:"none"}}>Close Pokedex</button>
+                    <button onClick={show} className="dex-btn" id="dex-expand-btn">Browse Pokédex</button>
+                    <button onClick={collapse} className="dex-btn collapse" id="dex-collapse-btn" style={{display:"none"}}>Close Pokédex</button>
                 </div>
                 <button 
                     onClick={prev} 

@@ -1,6 +1,8 @@
 import { gql, useQuery } from '@apollo/client'
 import { useState } from 'react'
 import './Detail.css'
+import ErrorMessage from './ErrorMessage'
+import Loading from './Loading'
 import Type from './Type'
 
 const GET_POKEMON_DETAILS = gql`
@@ -80,8 +82,9 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
         variables: gqlVariables,
     })
 
-    if(loading) return 'Loading...'
-    if(error) return `Error Encountered: ${error.message}`
+    if(loading) return <Loading />
+    if(error) return <ErrorMessage message={error.message}/>
+
     const details = data
 
     return (
@@ -125,6 +128,7 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
                             console.log("You caught "+name+"! "+chance) 
                             addPokemonToList(name, pokemonSprite)
                         } else {
+                            alert("Ah, you almost caught it!")
                             console.log("Ah damn, it was so close! "+chance) 
                         }
                     }}>Catch</button>

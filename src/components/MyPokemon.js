@@ -5,11 +5,11 @@ const MyPokemon = ({list, removePokemonFromList}) => {
     return (
         <div className="my-pokemons">
             <h2>
-                My Pokemons
+                My Pokémons
             </h2>
             {list.length === 0 ? 
-                <div>
-                    You have no Pokemons, go catch some!
+                <div className="my-pokemon-entry">
+                    You have no Pokémons, go catch some!
                 </div>
                 :
                 list.map((pokemon, i)=>(
