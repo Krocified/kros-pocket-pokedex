@@ -106,15 +106,6 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
                 <div id={name+"-type"} className="details-type" style={{display:"none"}}>
                     <Type pokemonType={pokemonType}/>
                 </div>
-                <div id={name+"-collapse"} style={{display:"none"}}>
-                    <button onClick={()=>{
-                        collapseDetails(name)
-                    }}
-                        className="details-btn collapse"
-                    >
-                        Close Details
-                    </button>
-                </div>
                 <div className="details-btn-wrapper">    
                     <button id={name+"-details-btn"} className="details-btn" onClick={()=>{
                         // console.log(details.pokemon)
@@ -156,6 +147,15 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
                     {pokemonMoves.map((move)=>(
                         <div key={move.move.name}>{move.move.name}</div>
                     ))}
+                </div>
+                <div id={name+"-collapse"} style={{display:"none"}}>
+                    <button onClick={()=>{
+                        collapseDetails(name)
+                    }}
+                        className="details-btn collapse"
+                    >
+                        Close Details
+                    </button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
+import AppLoading from './AppLoading'
 import Detail from './Detail'
 import './List.css'
 import MyPokemon from './MyPokemon'
@@ -53,7 +54,7 @@ const List = () => {
         localStorage.setItem('nicks', JSON.stringify(nicks))
     }, [myPokemons, nicks])
 
-    if(loading) return 'Loading...'
+    if(loading) return <AppLoading />
     if(error) return `Error Encountered: ${error.message}`
 
     const addPokemonToList = (pokemonName, sprite) => {
