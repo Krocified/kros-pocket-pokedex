@@ -135,7 +135,7 @@ const List = () => {
                 </div>
                 <button 
                     onClick={prev} 
-                    className="dex-btn" 
+                    className="dex-btn scroll-btn" 
                     id="dex-prev-btn" 
                     style={{display:"none"}}
                 >
@@ -143,7 +143,7 @@ const List = () => {
                 </button>
                 <button 
                     onClick={next} 
-                    className="dex-btn" 
+                    className="dex-btn scroll-btn" 
                     id="dex-next-btn" 
                     style={{display:"none"}}
                 >

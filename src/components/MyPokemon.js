@@ -17,10 +17,9 @@ const MyPokemon = ({list, removePokemonFromList}) => {
                         <div id={i+"-sprite"}>
                             <img src={pokemon.sprite} alt={pokemon.name}/>
                         </div>
-                        <b>    
+                        <h3>
                             {pokemon.nick}
-                        </b>
-                        <br/>
+                        </h3>
                         {pokemon.name}
                         <div>
                             <button className="my-poke-btn" onClick={()=>{removePokemonFromList(pokemon)}}>Release</button>

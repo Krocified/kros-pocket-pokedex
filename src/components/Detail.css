@@ -46,6 +46,7 @@
     background-color: #379dc9;
     border-radius: 10px;
     box-shadow: none;
+    font-family: 'Montserrat';
 }
 
 .details-btn:hover{
@@ -66,4 +67,10 @@
 
 .collapse:active{
     background-color: #8b2a2a;
+}
+
+#catch-sprite{
+    margin-left: 15px;
+    margin-bottom: -2px;
+    height: 16px;
 }

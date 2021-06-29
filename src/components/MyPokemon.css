@@ -12,11 +12,16 @@
     background-color: white;
 }
 
+.my-pokemon-entry h3 {
+    margin: 5px;
+}
+
 .my-poke-btn {
     padding: 10px 20px;
     margin: 10px auto;
     font-size: 15px;
     font-weight: bold;
+    font-family: 'Montserrat';
     color: white;
     background-color: #ca3d3d;
     border-radius: 10px;

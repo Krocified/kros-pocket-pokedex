@@ -4,6 +4,8 @@
     padding-bottom: 20px;
     width: 65%;
     color: #2E86AB;
+    font-family: 'Montserrat';
+    /* font-weight: bold; */
 }
 
 @media only screen and (max-width: 600px) {
@@ -20,7 +22,7 @@
     margin-bottom: 10px;
     padding-bottom: 20px;
     background-color: #F5F749;
-    border: 6px solid #2E86AB;
+    border: 7px solid #2E86AB;
     border-radius: 25px;
 }
 
@@ -42,7 +44,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border: 6px solid #2E86AB;
+    border: 7px solid #2E86AB;
     border-radius: 25px;
     background-color: #F5F749;
 }
@@ -51,11 +53,16 @@
     padding: 10px 20px;
     margin: 10px 15px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
+    font-family: 'Montserrat';
     color: white;
     background-color: #379dc9;
     border-radius: 10px;
     box-shadow: none;
+}
+
+.scroll-btn {
+    font-weight: 400;
 }
 
 .dex-btn:hover{

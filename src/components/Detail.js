@@ -132,7 +132,10 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
                             alert(CatchMessage[chance%CatchMessage.length])
                             console.log("Ah damn, it was so close! "+chance) 
                         }
-                    }}>Catch</button>
+                    }}>
+                        Catch
+                        <img src="./img/pokeball.png" id="catch-sprite" alt="pokeball"/>
+                    </button>
                 </div>
                 
                 
