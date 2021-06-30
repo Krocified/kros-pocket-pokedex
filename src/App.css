@@ -21,8 +21,8 @@
 }
 
 .app-wrapper{
-  min-height: calc(100vh-30px);
-  padding-bottom: 30px;
+  min-height: calc(100vh-60px);
+  padding-bottom: 60px;
 }
 
 .footer{
@@ -33,5 +33,26 @@
   padding-top: 10px;
   background-color: #201e1e;
   color: white;
-  height: 30px;
+  height: 60px;
+  font-family: 'Montserrat';
+}
+
+.footer h4{
+  font-weight: 100;
+  margin: 0;
+  margin-bottom: 5px;
+  margin-top: 8px;
+}
+
+.footer a{
+  color:white;
+  text-decoration: none;
+}
+
+.footer a:hover{
+  color:rgb(224, 224, 224);
+}
+
+.footer a:active{
+  color:rgb(192, 192, 192);
 }

@@ -11,7 +11,12 @@ function App() {
         <List/>
       </div>
       <div className="footer">
-        &#169; Krocified | 2021
+        <h4>
+          &#169; Krocified | 2021   
+        </h4>
+        <a href="https://github.com/Krocified/kros-pocket-pokedex" target="_blank" rel="noopener noreferrer">
+          Source Code
+        </a>
       </div>
     </div>
   );

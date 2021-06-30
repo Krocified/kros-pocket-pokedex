@@ -4,6 +4,7 @@ import CatchMessage from './CatchMessage'
 import './Detail.css'
 import ErrorMessage from './ErrorMessage'
 import Loading from './Loading'
+import MoveList from './MoveList'
 import Type from './Type'
 
 const GET_POKEMON_DETAILS = gql`
@@ -79,6 +80,17 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
         else return 0
     }
 
+    const catchPokemon = (name, pokemonSprite) => {
+        let chance = Math.floor(Math.random()*100)+1
+        if (chance>50) {
+            console.log("You caught "+name+"! "+chance) 
+            addPokemonToList(name, pokemonSprite)
+        } else {
+            alert(CatchMessage[chance%CatchMessage.length])
+            console.log("Ah damn, it was so close! "+chance) 
+        }
+    }    
+
     const { loading, error, data } = useQuery(GET_POKEMON_DETAILS,{
         variables: gqlVariables,
     })
@@ -115,21 +127,12 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
                         showDetails(name)
                     }}>Details</button>
                     <button id={name+"-catch-btn"} className="details-btn" style={{display:"none"}} onClick={()=>{
-                        let chance = Math.floor(Math.random()*100)+1
-                        if (chance>50) {
-                            console.log("You caught "+name+"! "+chance) 
-                            addPokemonToList(name, pokemonSprite)
-                        } else {
-                            alert(CatchMessage[chance%CatchMessage.length])
-                            console.log("Ah damn, it was so close! "+chance) 
-                        }
+                        catchPokemon(name, pokemonSprite)
                     }}>
                         Catch
                         <img src="./img/pokeball.png" id="catch-sprite" alt="pokeball"/>
                     </button>
                 </div>
-                
-                
                 <button id={name+"-movelist-btn"} className="details-btn" style={{display:"none"}} onClick={()=>{
                     showMoveList(name)
                 }}>
@@ -141,12 +144,7 @@ const Detail = ({name, myPokemons, entryId, addPokemonToList}) => {
                     Close Move List
                 </button>
                 <div id={name+"-moves"} className="details-moves" style={{display:"none"}}>
-                    <b>
-                        Move List:
-                    </b>
-                    {pokemonMoves.map((move)=>(
-                        <div key={move.move.name}>{move.move.name}</div>
-                    ))}
+                    <MoveList pokemonMoves={pokemonMoves}/>
                 </div>
                 <div id={name+"-collapse"} style={{display:"none"}}>
                     <button onClick={()=>{
