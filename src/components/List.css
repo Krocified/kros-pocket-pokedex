@@ -73,6 +73,14 @@
     background-color: #266b86;
 }
 
+.pokedex-btn-wrapper{
+    margin-bottom: 10px;
+}
+
+#region-btn-wrapper{
+    margin-bottom: 0px;
+}
+
 .collapse {
     background-color: #ca3d3d;
 }

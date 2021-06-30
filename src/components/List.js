@@ -1,61 +1,49 @@
 import { gql, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import AppLoading from './AppLoading'
-import Detail from './Detail'
 import './List.css'
 import MyPokemon from './MyPokemon'
+import PokemonList from './PokemonList'
 
 const GET_POKEMON_LIST = gql`
-    query getPokemonList{
-        pokemons(limit: 151, offset: 0){
+    query getPokemonList($limit: Int, $offset: Int){
+        pokemons(limit: $limit, offset: $offset){
             results{
                 name
             }
         }
     }
 `
-
-const PokemonList = ( {pokemons, myPokemons, pokeIndex, addPokemonToList} ) => {
-    // console.log(pokemons)
-    
-    const listItems = Array.from(pokemons).slice(pokeIndex,pokeIndex+10).map((pokemon, i) => {
-        return (
-            <li key={pokemon.name}>
-                <Detail 
-                    name={pokemon.name} 
-                    myPokemons={myPokemons}
-                    entryId={pokeIndex+i}
-                    addPokemonToList={addPokemonToList}
-                />
-            </li>
-    )})
-    return (
-        <ul>
-            {listItems}
-        </ul>
-    )
-}
-
-const List = () => {
-
-    // console.log(localStorage.getItem('myPokemons'))
+const List = ({gen, setGen}) => {
 
     const [myPokemons, setmyPokemons] = useState(
         JSON.parse(localStorage.getItem('myPokemons')) || []
     )
-    const { loading, error, data } = useQuery(GET_POKEMON_LIST)
+
+    const [gqlVariables, setGqlVariables] = useState({
+        "limit": 151,
+        "offset": 0,
+    })
+
+    const { loading, error, data } = useQuery(GET_POKEMON_LIST, {
+        variables: gqlVariables
+    })
+
     const [nicks, setNicks] = useState(
         JSON.parse(localStorage.getItem('nicks')) || []
     )
     const [index, setIndex] = useState(0)
-
+    const regions = ["","Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar"]
+    
     useEffect(() => {
         localStorage.setItem('myPokemons', JSON.stringify(myPokemons)) 
         localStorage.setItem('nicks', JSON.stringify(nicks))
     }, [myPokemons, nicks])
-
+    
     if(loading) return <AppLoading />
     if(error) return `Error Encountered: ${error.message}`
+    
+    const pokemons = data.pokemons.results
 
     const addPokemonToList = (pokemonName, sprite) => {
         let nick
@@ -90,6 +78,26 @@ const List = () => {
         setNicks(removeNick)
     }
 
+    const showKanto = () => {
+        setGqlVariables({
+            "limit": 151,
+            "offset": 0,
+        })
+        setGen(1)
+        setIndex(0)
+        collapse()
+    }
+
+    const showSinnoh = () => {
+        setGqlVariables({
+            "limit": 107,
+            "offset": 386,
+        })
+        setGen(4)
+        setIndex(0)
+        collapse()
+    }
+
     const show = () => {
         document.getElementById("pokemon-master-list").style.display = "block"
         document.getElementById("dex-collapse-btn").style.display = "inline"
@@ -107,31 +115,80 @@ const List = () => {
     }
 
     const next = () => {
-        if(index===150) {
-            setIndex(0)
-            return
+        switch (gen) {
+            case 1:
+                if(index===150) {
+                    setIndex(0)
+                    return
+                }
+                setIndex(index+10)
+                break;
+            case 4:
+                if(index===100) {
+                    setIndex(0)
+                    return
+                }
+                setIndex(index+10)
+                break;
+            default:
+                break;
         }
-        setIndex(index+10)
+        
     }
 
     const prev = () => {
-        if(index===0) {
-            setIndex(150)
-            return
+        switch (gen) {
+            case 1:
+                if(index===0) {
+                    setIndex(150)
+                    return
+                }
+                setIndex(index-10)
+                break;
+            case 4:
+                if(index===0) {
+                    setIndex(100)
+                    return
+                }
+                setIndex(index-10)
+                break;
+            default:
+                break;
         }
-        setIndex(index-10)
     }
 
-    const pokemons = data.pokemons.results
+    const showMyPokemons = () => {
+        document.getElementById("pokedex").style.display="none"
+        document.getElementById("my-pokemon-view").style.display="block"
+        document.getElementById("pokedex-view-btn").style.display="inline"
+        document.getElementById("my-pokemon-view-btn").style.display="none"
+        document.getElementById("region-btn-wrapper").style.display="none"
+    }
+    
+    const showPokedex = () => {
+        document.getElementById("pokedex").style.display="block"
+        document.getElementById("my-pokemon-view").style.display="none"
+        document.getElementById("pokedex-view-btn").style.display="none"
+        document.getElementById("my-pokemon-view-btn").style.display="inline"
+        document.getElementById("region-btn-wrapper").style.display="block"
+    }
 
     return (
         <div className="pokemon-list">
-            <div className="pokedex">
+            <div className="pokedex-btn-wrapper">
+                <button onClick={showMyPokemons} className="dex-btn" id="my-pokemon-view-btn">My Pokémons</button>
+                <button onClick={showPokedex} className="dex-btn" id="pokedex-view-btn" style={{display:"none"}}>Pokédex</button>
+                <div id="region-btn-wrapper">
+                    <button onClick={showKanto} className="dex-btn" id="dex-kanto-btn">Browse Kanto Pokédex</button>
+                    <button onClick={showSinnoh} className="dex-btn" id="dex-sinnoh-btn">Browse Sinnoh Pokédex</button>
+                </div>
+            </div>
+            <div className="pokedex" id="pokedex">
                 <h2>
-                    Pokémon List
+                    {regions[gen]} Pokémon List
                 </h2>
                 <div>
-                    <button onClick={show} className="dex-btn" id="dex-expand-btn">Browse Pokédex</button>
+                    <button onClick={show} className="dex-btn" id="dex-expand-btn">Open Pokédex</button>
                     <button onClick={collapse} className="dex-btn collapse" id="dex-collapse-btn" style={{display:"none"}}>Close Pokédex</button>
                 </div>
                 <button 
@@ -159,7 +216,7 @@ const List = () => {
                     />
                 </div>
             </div>
-            <div className="my-poke-list">
+            <div className="my-poke-list" id="my-pokemon-view" style={{display:"none"}}>
                 <MyPokemon 
                     list={myPokemons} 
                     removePokemonFromList={removePokemonFromList}

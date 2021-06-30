@@ -1,14 +1,18 @@
+import { useState } from 'react';
 import './App.css';
 import List from './components/List';
 
 function App() {
+
+  const [gen, setGen] = useState(1)
+
   return (
     <div className="App">
       <div className="app-wrapper">
         <div className="title-card">
-          <img src={"./img/firered.png"} style={{ height: 100 }} alt={"Pocket Pokedex - Fire Red"}/>
+          <img src={"./img/gen-"+gen+".png"} style={{ height: 100 }} alt={"Pocket Pokedex - Fire Red"}/>
         </div>
-        <List/>
+        <List gen={gen} setGen={setGen}/>
       </div>
       <div className="footer">
         <h4>
