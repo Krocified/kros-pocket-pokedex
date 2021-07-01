@@ -8,16 +8,6 @@
     /* font-weight: bold; */
 }
 
-@media only screen and (max-width: 600px) {
-    .pokemon-list{
-        margin: auto;
-        margin-top: 20px;
-        padding-bottom: 20px;
-        width: 90%;
-        color: #2E86AB;
-    }
-}
-
 .pokedex {
     margin-bottom: 10px;
     padding-bottom: 20px;
@@ -71,6 +61,24 @@
 
 .dex-btn:active{
     background-color: #266b86;
+}
+
+.region{
+    width: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+    .pokemon-list{
+        margin: auto;
+        margin-top: 20px;
+        padding-bottom: 20px;
+        width: 90%;
+        color: #2E86AB;
+    }
+
+    .region{
+        width: 75%;
+    }
 }
 
 .pokedex-btn-wrapper{

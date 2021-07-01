@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <div className="app-wrapper">
         <div className="title-card">
-          <img src={"./img/gen-"+gen+".png"} style={{ height: 100 }} alt={"Pocket Pokedex - Fire Red"}/>
+          <img src={"./img/gen-"+gen+".png"} style={{ height: 100 }} alt={"Pocket Pokédex"}/>
         </div>
         <List gen={gen} setGen={setGen}/>
       </div>

@@ -88,12 +88,52 @@ const List = ({gen, setGen}) => {
         collapse()
     }
 
+    const showJohto = () => {
+        setGqlVariables({
+            "limit": 100,
+            "offset": 151,
+        })
+        setGen(2)
+        setIndex(0)
+        collapse()
+    }
+
+    const showHoenn = () => {
+        setGqlVariables({
+            "limit": 135,
+            "offset": 251,
+        })
+        setGen(3)
+        setIndex(0)
+        collapse()
+    }
+
     const showSinnoh = () => {
         setGqlVariables({
             "limit": 107,
             "offset": 386,
         })
         setGen(4)
+        setIndex(0)
+        collapse()
+    }
+
+    const showUnova = () => {
+        setGqlVariables({
+            "limit": 156,
+            "offset": 493,
+        })
+        setGen(5)
+        setIndex(0)
+        collapse()
+    }
+
+    const showKalos = () => {
+        setGqlVariables({
+            "limit": 72,
+            "offset": 649,
+        })
+        setGen(6)
         setIndex(0)
         collapse()
     }
@@ -116,6 +156,7 @@ const List = ({gen, setGen}) => {
 
     const next = () => {
         switch (gen) {
+            case 5:
             case 1:
                 if(index===150) {
                     setIndex(0)
@@ -123,8 +164,28 @@ const List = ({gen, setGen}) => {
                 }
                 setIndex(index+10)
                 break;
+            case 2:
+                if(index===90) {
+                    setIndex(0)
+                    return
+                }
+                setIndex(index+10)
+            case 3:
+                if(index===130) {
+                    setIndex(0)
+                    return
+                }
+                setIndex(index+10)
+                break;
             case 4:
                 if(index===100) {
+                    setIndex(0)
+                    return
+                }
+                setIndex(index+10)
+                break;
+            case 6:
+                if(index===70){
                     setIndex(0)
                     return
                 }
@@ -138,6 +199,7 @@ const List = ({gen, setGen}) => {
 
     const prev = () => {
         switch (gen) {
+            case 5:
             case 1:
                 if(index===0) {
                     setIndex(150)
@@ -145,9 +207,29 @@ const List = ({gen, setGen}) => {
                 }
                 setIndex(index-10)
                 break;
+            case 2:
+                if(index===0) {
+                    setIndex(90)
+                    return
+                }
+                setIndex(index-10)
+            case 3:
+                if(index===0) {
+                    setIndex(130)
+                    return
+                }
+                setIndex(index-10)
+                break;
             case 4:
                 if(index===0) {
                     setIndex(100)
+                    return
+                }
+                setIndex(index-10)
+                break;
+            case 6:
+                if(index===0){
+                    setIndex(70)
                     return
                 }
                 setIndex(index-10)
@@ -163,6 +245,7 @@ const List = ({gen, setGen}) => {
         document.getElementById("pokedex-view-btn").style.display="inline"
         document.getElementById("my-pokemon-view-btn").style.display="none"
         document.getElementById("region-btn-wrapper").style.display="none"
+        document.getElementById("region-btn-wrapper-2").style.display="none"
     }
     
     const showPokedex = () => {
@@ -171,6 +254,7 @@ const List = ({gen, setGen}) => {
         document.getElementById("pokedex-view-btn").style.display="none"
         document.getElementById("my-pokemon-view-btn").style.display="inline"
         document.getElementById("region-btn-wrapper").style.display="block"
+        document.getElementById("region-btn-wrapper-2").style.display="block"
     }
 
     return (
@@ -179,8 +263,14 @@ const List = ({gen, setGen}) => {
                 <button onClick={showMyPokemons} className="dex-btn" id="my-pokemon-view-btn">My Pokémons</button>
                 <button onClick={showPokedex} className="dex-btn" id="pokedex-view-btn" style={{display:"none"}}>Pokédex</button>
                 <div id="region-btn-wrapper">
-                    <button onClick={showKanto} className="dex-btn" id="dex-kanto-btn">Browse Kanto Pokédex</button>
-                    <button onClick={showSinnoh} className="dex-btn" id="dex-sinnoh-btn">Browse Sinnoh Pokédex</button>
+                    <button onClick={showKanto} className="dex-btn region" id="dex-kanto-btn">Browse Kanto Pokédex</button>
+                    <button onClick={showJohto} className="dex-btn region" id="dex-johto-btn">Browse Johto Pokédex</button>
+                    <button onClick={showHoenn} className="dex-btn region" id="dex-hoenn-btn">Browse Hoenn Pokédex</button>
+                </div>
+                <div id="region-btn-wrapper-2">
+                    <button onClick={showSinnoh} className="dex-btn region" id="dex-sinnoh-btn">Browse Sinnoh Pokédex</button>
+                    <button onClick={showUnova} className="dex-btn region" id="dex-unova-btn">Browse Unova Pokédex</button>
+                    <button onClick={showKalos} className="dex-btn region" id="dex-kalos-btn">Browse Kalos Pokédex</button>
                 </div>
             </div>
             <div className="pokedex" id="pokedex">
