@@ -156,8 +156,8 @@ const List = ({gen, setGen}) => {
 
     const next = () => {
         switch (gen) {
-            case 5:
             case 1:
+            case 5:
                 if(index===150) {
                     setIndex(0)
                     return
@@ -170,6 +170,7 @@ const List = ({gen, setGen}) => {
                     return
                 }
                 setIndex(index+10)
+                break;
             case 3:
                 if(index===130) {
                     setIndex(0)
@@ -199,8 +200,8 @@ const List = ({gen, setGen}) => {
 
     const prev = () => {
         switch (gen) {
-            case 5:
             case 1:
+            case 5:
                 if(index===0) {
                     setIndex(150)
                     return
@@ -213,6 +214,7 @@ const List = ({gen, setGen}) => {
                     return
                 }
                 setIndex(index-10)
+                break;
             case 3:
                 if(index===0) {
                     setIndex(130)
