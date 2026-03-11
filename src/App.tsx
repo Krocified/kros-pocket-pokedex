@@ -40,7 +40,7 @@ function App() {
                 >
                     <PokeballIcon size={40} color="#1e293b" />
                     <h1 style={{ fontSize: '1.75rem', color: '#1e293b' }}>
-                        Pocket Pokédex
+                        Green Bird's Pokédex
                     </h1>
                 </motion.div>
 
