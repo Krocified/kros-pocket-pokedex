@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-export const PokeballIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
+export const PokeballIcon = ({ size = 24, className = "", color = "currentColor" }: { size?: number, className?: string, color?: string }) => (
     <motion.svg
         width={size}
         height={size}
@@ -8,6 +8,7 @@ export const PokeballIcon = ({ size = 24, className = "" }: { size?: number, cla
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={className}
+        style={{ color }}
         animate={className.includes('animate-spin') ? { rotate: 360 } : {}}
         transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
     >
